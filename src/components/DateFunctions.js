@@ -1,10 +1,10 @@
 export function getMonthName(month) {
   // month = 2, (Calendar.js line 11)
   const date = new Date(); // Tue Mar 08 2022 17:54:47 GMT+0100 (Central European Standard Time)
-  date.setMonth(month); // date.setMonth(2) - tako spreminjas mesece v date
+  date.setMonth(month); // date.setMonth(2) 
   // 1646760300875
 
-  // undefined vzame od browserja jezik
+  // undefined does some browser magic
   return Intl.DateTimeFormat(undefined, {
     month: "long",
   }).format(date);
@@ -24,7 +24,7 @@ export function getDayName(indexNr) {
   // date.getDate() = 8 (ker smo 8ga)
   // prvi date.setDate(0 - 2 + 8) = 6. Najdi nedeljo! Nedelja je 6.3 zato je rezultat 6!!
 
-  // undefined vzame od browserja jezik
+  // undefined does some browser magic
   return Intl.DateTimeFormat(undefined, { weekday: "short" })
     .format(date)
     .slice(0, 2);

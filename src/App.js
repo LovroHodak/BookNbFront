@@ -4,16 +4,14 @@ import Aside from "./components/Aside";
 import { getData } from "./useQueryHook";
 import { useQuery } from "react-query";
 import Offers from "./components/Offers";
-import AirBook from "./airbook.jpg";
+import Welcome from "./components/Welcome";
 
 function App() {
   const [city, setCity] = useState("");
   const [dateObj, setDateObj] = useState({});
-
   // by default is true meaning it will fire up each time, but i want it controled
   // it will be called when i press search
   const [callQuery, setCallQuery] = useState(false);
-
   const [tabs, setTabs] = useState([]);
   const [selectedKey, setSelectedKey] = useState();
   const [hideSearch, setHideSearch] = useState(false);
@@ -21,8 +19,8 @@ function App() {
   // empty by default, but gets filled while typing in destination and choosing date
   const queryKey = ["offers", city, dateObj];
 
-  console.log(selectedKey);
-  console.log(queryKey);
+ /*  console.log(selectedKey);
+  console.log(queryKey); */
 
   // when there is only one activeKey===queryKey
   const activeKey = selectedKey || queryKey;
@@ -54,11 +52,12 @@ function App() {
       },
     }
   );
-
+  console.log(tabs)
   //
   const addTab = () => {
     setSelectedKey(queryKey);
     setTabs((tabs) => tabs.concat({ name: city, key: queryKey }));
+    // setTabs(tabs=> [...tabs,{ name: city, key: queryKey }])
   };
 
   return (
@@ -75,19 +74,8 @@ function App() {
         tabs={tabs}
       />
 
-      {/* Welcome page */}
       <div className="md:mx-auto grow md:w-[340px] bg-white">
-        {tabs.length === 0 && (
-          <div className="flex flex-col">
-            <h1 className="k text-2xl font-semibold text-center my-8">
-              Get Booking and Airbnb results with one click
-            </h1>
-            <div className="h-full w-full">
-              <img src={AirBook} className="my-auto" alt="img" />
-            </div>
-          </div>
-        )}
-
+        {tabs.length === 0 && <Welcome />}
         <Offers
           setSelectedKey={setSelectedKey}
           selectedKey={selectedKey}

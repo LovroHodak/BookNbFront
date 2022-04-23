@@ -45,15 +45,13 @@ export default function Calendar({ setDateObj }) {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
   const [fromOrTo, setFromOrTo] = useState("from");
-  // this is sent to each calendarCell but it activates on click
 
+  // this is sent to each calendarCell
   // SETDAY takes in number as arg
   const setDay = (dayOfMonth) => {
     const targetDate = new Date(`${year}-${month + 1}-${dayOfMonth}`);
     const targetPlusOneDate = new Date(`${year}-${month + 1}-${dayOfMonth}`);
     targetPlusOneDate.setDate(targetDate.getDate() + 1);
-
-
     // logic for setting chosen dates
     if (
       !fromDate ||
@@ -76,7 +74,6 @@ export default function Calendar({ setDateObj }) {
       setToDate(targetPlusOneDate);
     }
   };
-  
 
   // MONTHTABLE
   // MONTHTABLE
@@ -84,7 +81,6 @@ export default function Calendar({ setDateObj }) {
   // useMemo because we want smt to be returned and effect needs to be fired immediately
   const monthTable = useMemo(() => {
     const firstDay = new Date();
-    //console.log(firstDay)
     // Fri Mar 11 2022 16:21:40 GMT+0100 (Central European Standard Time)
     firstDay.setDate(1);
     //Tue Mar 01 2022 16:22:20 GMT+0100 (Central European Standard Time)
@@ -94,7 +90,6 @@ export default function Calendar({ setDateObj }) {
     const firstDayNumber = firstDay.getDay();
     // 2 (Tuesday)
     const lastDay = new Date(year, month + 1, 0);
-    //console.log(lastDay);
     // Thu Mar 31 2022 00:00:00 GMT+0200 (Central European Summer Time)
     const lastDayNumber = lastDay.getDay();
     // 4 (Thursday)
@@ -119,7 +114,6 @@ export default function Calendar({ setDateObj }) {
           }
           return null;
         }
-
         // LAST row
         // rowIndex starts with 0
         if (rowIndex === nrOfRows - 1) {
@@ -131,7 +125,6 @@ export default function Calendar({ setDateObj }) {
           }
           return null;
         }
-
         // OTHER rows
         // there aleready exists rule for row=0, so i start with 1
         // (1 * 7) + 1 - (2) + 0 ergo first date in 1row je = 6
@@ -139,12 +132,10 @@ export default function Calendar({ setDateObj }) {
       });
       return daysOfColumn;
     });
-
     //console.log(monthsGrid);
     // [Array(7), Array(7), Array(7), Array(7), Array(7)]
     return monthsGrid;
   }, [month, year]);
-
 
   // USEEFFECT
   // USEEFFECT
@@ -159,7 +150,7 @@ export default function Calendar({ setDateObj }) {
       toYear: toDate?.getFullYear(),
     });
   }, [fromDate, setDateObj, toDate]);
-  
+
   return (
     <div className="mx-1 mb-8">
       <div className="flex items-center p-2.5">
@@ -219,4 +210,3 @@ export default function Calendar({ setDateObj }) {
     </div>
   );
 }
-
