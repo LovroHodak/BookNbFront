@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Aside from "./components/Aside";
 import { getData } from "./useQueryHook";
 import { useQuery } from "react-query";
@@ -7,6 +7,12 @@ import Offers from "./components/Offers";
 import Welcome from "./components/Welcome";
 
 function App() {
+
+  useEffect(() => {
+    if(tabs.length === 0){
+
+    }
+  }, [])
   const [city, setCity] = useState("");
   const [dateObj, setDateObj] = useState({});
   // by default is true meaning it will fire up each time, but i want it controled
@@ -15,6 +21,13 @@ function App() {
   const [tabs, setTabs] = useState([]);
   const [selectedKey, setSelectedKey] = useState();
   const [hideSearch, setHideSearch] = useState(false);
+
+  // in case i close all tabs in small screen
+  useEffect(() => {
+    if(tabs.length === 0){
+      setHideSearch(false)
+    }
+  }, [tabs.length])
 
   // empty by default, but gets filled while typing in destination and choosing date
   const queryKey = ["offers", city, dateObj];
