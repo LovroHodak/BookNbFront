@@ -14,12 +14,12 @@ export default function Aside({
 }) {
   return (
     <div
-      className={`md:w-[340px] grow-0 bg-rose-500 md:mx-auto ${
+      className={`md:w-[340px] grow-0 bg-rose-500 md:mx-auto md:border-x-2 border-blue-500 ${
         hideSearch ? "hidden md:block" : ""
       }`}
     >
       <div className="flex items-center p-2.5 mt-1 mx-1">
-        <i className="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
+        <i className="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-500"></i>
         <h1 className="font-bold text-black-200 text-[15px] ml-3">BookNB</h1>
         <div className="grow"></div>
         {/* only show hidesearch in smallview and if there are any tabs */}

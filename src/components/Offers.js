@@ -46,7 +46,7 @@ export default function Offers({
   const emptyClasses = emptyTabs ? "hidden" : "";
 
   return (
-    <div className={`${emptyClasses} md:container bg-violet-500 h-full w-full`}>
+    <div className={`${emptyClasses}  md:container bg-inherit h-full w-full p-2`}>
       <div className="flex flex-wrap relative">
         <div
           onClick={() => {
@@ -58,7 +58,7 @@ export default function Offers({
           } md:invisible`}
         >
           <button className="rounded-lg backdrop-blur border-2 border-black">
-            <i className="bi bi-search-heart p-1"></i>
+            <i className="bi bi-search-heart p-1 text-base"></i>
           </button>
         </div>
 
@@ -66,8 +66,10 @@ export default function Offers({
           const isActive = tab.key === selectedKey;
 
           const activeClasses = isActive
-            ? "bg-red-500 border-2 border-white"
-            : " border-2 border-transparent";
+            ? "bg-rose-500 border-2 border-rose-700 hover:bg-rose-600"
+            : " border-2 border-gray-200 hover:bg-gray-100";
+
+            
 
           function removeTab() {
             /* const currentTabIndex = tabs.findIndex(t => t === tab) */
@@ -86,17 +88,18 @@ export default function Offers({
           }
 
           return (
-            <div className={`${activeClasses} py-2 px-4 mr-1`}>
+            <div className={`${activeClasses} py-2 px-4 mr-1 flex items-center cursor-default`}>
               <span
                 onClick={() => {
                   setSelectedKey(tab.key);
                 }}
+                className=""
               >
                 <span className="capitalize">{tab.name}</span>:{" "}
                 {tab.key[2].fromDay}.{tab.key[2].fromMonth} - {tab.key[2].toDay}
                 .{tab.key[2].toMonth}
               </span>
-              <i onClick={() => removeTab()} className="bi bi-x"></i>
+              <i onClick={() => removeTab()} className={`${isActive ? "hover:bg-rose-700" : "hover:bg-gray-200"} bi bi-x ml-1 text-2xl cursor-pointer rounded-full`}></i>
             </div>
           );
         })}
@@ -136,7 +139,7 @@ export default function Offers({
       {!query.data && !query.isLoading && !query.isError && (
         <button
           onClick={() => query.refetch()}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8 ml-4"
         >
           Reload
         </button>
@@ -147,7 +150,7 @@ export default function Offers({
           <span>Error occured, no results</span>
           <button
             onClick={() => query.refetch()}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8 ml-4"
           >
             Reload
           </button>
@@ -220,7 +223,7 @@ function Booking({ offer }) {
       </div>
       <div className="col-start-5 col-end-6 md:mx-auto relative mr-10">
         <div className="hidden md:flex h-full w-6 items-center justify-center">
-          <div className="h-full w-1 bg-blue-800 pointer-events-none"></div>
+          <div className="h-full w-1 bg-blue-500 pointer-events-none"></div>
         </div>
         <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-blue-500 shadow"></div>
       </div>
@@ -233,12 +236,12 @@ function Airbnb({ offer }) {
     <div className="mr-10 ml-10 flex md:contents">
       <div className="col-start-5 col-end-6 md:mx-auto relative">
         <div className="hidden md:flex h-full w-6  items-center justify-center">
-          <div className="h-full w-1 bg-pink-800 pointer-events-none"></div>
+          <div className="h-full w-1 bg-rose-500 pointer-events-none"></div>
         </div>
-        <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-pink-500 shadow"></div>
+        <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-rose-500 shadow"></div>
       </div>
 
-      <div className="bg-pink-500 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
+      <div className="bg-rose-500 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
         <div className="h-[204px] w-[204px] mb-4 mx-auto">
           <a href={offer.link} target="_blank" rel="noreferrer">
             <img

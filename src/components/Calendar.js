@@ -48,9 +48,9 @@ export default function Calendar({ setDateObj }) {
 
   // this is sent to each calendarCell
   // SETDAY takes in number as arg
-  const setDay = (dayOfMonth) => {
-    const targetDate = new Date(`${year}-${month + 1}-${dayOfMonth}`);
-    const targetPlusOneDate = new Date(`${year}-${month + 1}-${dayOfMonth}`);
+  const setDay = (dayInMonth) => {
+    const targetDate = new Date(`${year}-${month + 1}-${dayInMonth}`);
+    const targetPlusOneDate = new Date(`${year}-${month + 1}-${dayInMonth}`);
     targetPlusOneDate.setDate(targetDate.getDate() + 1);
     // logic for setting chosen dates
     if (
