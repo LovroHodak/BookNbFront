@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import PlaceholderLoading from "react-placeholder-loading";
 
 export default function Offers({
   airbnb = [],
@@ -18,7 +17,7 @@ export default function Offers({
     });
   }, [airbnb, booking]);
 
-  const [sortType, setSortType] = useState();
+  const [sortType, setSortType] = useState("priceUp");
 
   const sortedQuery = useMemo(() => {
     if (!sortType) {
@@ -46,7 +45,9 @@ export default function Offers({
   const emptyClasses = emptyTabs ? "hidden" : "";
 
   return (
-    <div className={`${emptyClasses}  md:container bg-inherit h-full w-full p-2`}>
+    <div
+      className={`${emptyClasses}  md:container bg-inherit h-full w-full p-2`}
+    >
       <div className="flex flex-wrap relative">
         <div
           onClick={() => {
@@ -66,10 +67,8 @@ export default function Offers({
           const isActive = tab.key === selectedKey;
 
           const activeClasses = isActive
-            ? "bg-rose-500 border-2 border-rose-700 hover:bg-rose-600"
-            : " border-2 border-gray-200 hover:bg-gray-100";
-
-            
+            ? "bg-rose-500 border-2 border-rose-700 hover:bg-rose-600 rounded"
+            : " border-2 border-gray-200 hover:bg-gray-100 rounded";
 
           function removeTab() {
             /* const currentTabIndex = tabs.findIndex(t => t === tab) */
@@ -88,7 +87,9 @@ export default function Offers({
           }
 
           return (
-            <div className={`${activeClasses} py-2 px-4 mr-1 flex items-center cursor-default`}>
+            <div
+              className={`${activeClasses} py-2 px-4 mr-1 flex items-center cursor-default`}
+            >
               <span
                 onClick={() => {
                   setSelectedKey(tab.key);
@@ -99,7 +100,12 @@ export default function Offers({
                 {tab.key[2].fromDay}.{tab.key[2].fromMonth} - {tab.key[2].toDay}
                 .{tab.key[2].toMonth}
               </span>
-              <i onClick={() => removeTab()} className={`${isActive ? "hover:bg-rose-700" : "hover:bg-gray-200"} bi bi-x ml-1 text-2xl cursor-pointer rounded-full`}></i>
+              <i
+                onClick={() => removeTab()}
+                className={`${
+                  isActive ? "hover:bg-rose-700" : "hover:bg-gray-200"
+                } bi bi-x ml-1 text-2xl cursor-pointer rounded-full`}
+              ></i>
             </div>
           );
         })}
@@ -109,7 +115,7 @@ export default function Offers({
       {query.isLoading && (
         <button
           type="button"
-          className="mt-8 ml-4 flex items-center rounded-lg bg-amber-300 px-4 py-2 text-white"
+          className="mt-8 ml-4 mb-2 flex items-center rounded-lg bg-amber-300 px-4 py-2 text-white"
           disabled
         >
           <svg
@@ -139,14 +145,14 @@ export default function Offers({
       {!query.data && !query.isLoading && !query.isError && (
         <button
           onClick={() => query.refetch()}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8 ml-4"
+          className="bg-blue-500 hover:bg-blue-700 mb-2 text-white font-bold py-2 px-4 rounded mt-8 ml-4"
         >
           Reload
         </button>
       )}
 
       {query.isError && !query.data && (
-        <div className="mt-8 ml-4">
+        <div className="mt-8 ml-4 mb-2">
           <span>Error occured, no results</span>
           <button
             onClick={() => query.refetch()}
@@ -158,7 +164,7 @@ export default function Offers({
       )}
 
       {sortedQuery.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-4 mt-2">
+        <div className="flex flex-wrap justify-center gap-4 mt-2 mb-2">
           <button
             onClick={() => setSortType("ratingUp")}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-[110px]"
@@ -187,9 +193,41 @@ export default function Offers({
             Price
             <i className="p-1 bi bi-arrow-up"></i>
           </button>
+          <button
+            onClick={() => {
+              sortType !== "priceDown"
+                ? setSortType("priceDown")
+                : setSortType("priceUp");
+            }}
+          >
+            TestPrice
+          </button>
+          <button
+            onClick={() => {
+              sortType !== "ratingDown"
+                ? setSortType("ratingDown")
+                : setSortType("ratingUp");
+            }}
+          >
+            TestRating
+          </button>
         </div>
       )}
-      <div className="flex flex-col lg:grid grid-cols-9 mx-auto p-2 text-blue-50 ">
+
+      {sortedQuery.length > 0 ? (
+        <div className="hidden md:flex justify-around border-b-2 border-t-2 border-blue-500">
+          <h1 className="border-2 border-black p-2 text-2xl rounded my-2">
+            Booking
+          </h1>
+          <h1 className="border-2 border-black p-2 text-2xl rounded my-2">
+            AirBNB
+          </h1>
+        </div>
+      ) : (
+        <></>
+      )}
+
+      <div className="flex flex-col lg:grid grid-cols-9 mx-auto p-2 pt-0 text-blue-50 ">
         {sortedQuery?.map((offer, i) => {
           if (offer.provider === "booking") {
             return <Booking key={i} offer={offer} />;

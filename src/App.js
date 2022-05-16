@@ -66,6 +66,7 @@ function App() {
     }
   );
   console.log(tabs)
+  console.log(query.data)
   //
   const addTab = () => {
     setSelectedKey(queryKey);
