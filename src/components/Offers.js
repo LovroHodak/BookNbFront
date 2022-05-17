@@ -164,8 +164,8 @@ export default function Offers({
       )}
 
       {sortedQuery.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-4 mt-2 mb-2">
-          <button
+        <div className="flex flex-wrap justify-end gap-4 mt-2 mb-2">
+          {/* <button
             onClick={() => setSortType("ratingUp")}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-[110px]"
           >
@@ -192,25 +192,33 @@ export default function Offers({
           >
             Price
             <i className="p-1 bi bi-arrow-up"></i>
-          </button>
+          </button> */}
           <button
+          className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
             onClick={() => {
               sortType !== "priceDown"
                 ? setSortType("priceDown")
                 : setSortType("priceUp");
             }}
           >
-            TestPrice
-          </button>
+            Price
+            {sortType === 'priceUp' && <i className="p-1 bi bi-arrow-up textwhite"></i>}
+            {sortType === 'priceDown' && <i className="p-1 bi bi-arrow-down textwhite"></i>}
+            {sortType !== 'priceDown' && sortType !== 'priceUp' && <i className="p-1 bi bi-arrow-down text-blue-500"></i>}
+           </button>
           <button
+          className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
             onClick={() => {
               sortType !== "ratingDown"
                 ? setSortType("ratingDown")
                 : setSortType("ratingUp");
             }}
           >
-            TestRating
-          </button>
+            Rating
+            {sortType === 'ratingUp' && <i className="p-1 bi bi-arrow-up textwhite"></i>}
+            {sortType === 'ratingDown' && <i className="p-1 bi bi-arrow-down textwhite"></i>}
+            {sortType !== 'ratingDown' && sortType !== 'ratingUp' && <i className="p-1 bi bi-arrow-down text-blue-500"></i>}
+            </button>
         </div>
       )}
 
