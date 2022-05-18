@@ -194,7 +194,7 @@ export default function Offers({
             <i className="p-1 bi bi-arrow-up"></i>
           </button> */}
           <button
-          className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
+            className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
             onClick={() => {
               sortType !== "priceDown"
                 ? setSortType("priceDown")
@@ -202,12 +202,18 @@ export default function Offers({
             }}
           >
             Price
-            {sortType === 'priceUp' && <i className="p-1 bi bi-arrow-up textwhite"></i>}
-            {sortType === 'priceDown' && <i className="p-1 bi bi-arrow-down textwhite"></i>}
-            {sortType !== 'priceDown' && sortType !== 'priceUp' && <i className="p-1 bi bi-arrow-down text-blue-500"></i>}
-           </button>
+            {sortType === "priceUp" && (
+              <i className="p-1 bi bi-arrow-up textwhite"></i>
+            )}
+            {sortType === "priceDown" && (
+              <i className="p-1 bi bi-arrow-down textwhite"></i>
+            )}
+            {sortType !== "priceDown" && sortType !== "priceUp" && (
+              <i className="p-1 bi bi-arrow-down text-blue-500"></i>
+            )}
+          </button>
           <button
-          className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
+            className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
             onClick={() => {
               sortType !== "ratingDown"
                 ? setSortType("ratingDown")
@@ -215,10 +221,16 @@ export default function Offers({
             }}
           >
             Rating
-            {sortType === 'ratingUp' && <i className="p-1 bi bi-arrow-up textwhite"></i>}
-            {sortType === 'ratingDown' && <i className="p-1 bi bi-arrow-down textwhite"></i>}
-            {sortType !== 'ratingDown' && sortType !== 'ratingUp' && <i className="p-1 bi bi-arrow-down text-blue-500"></i>}
-            </button>
+            {sortType === "ratingUp" && (
+              <i className="p-1 bi bi-arrow-up textwhite"></i>
+            )}
+            {sortType === "ratingDown" && (
+              <i className="p-1 bi bi-arrow-down textwhite"></i>
+            )}
+            {sortType !== "ratingDown" && sortType !== "ratingUp" && (
+              <i className="p-1 bi bi-arrow-down text-blue-500"></i>
+            )}
+          </button>
         </div>
       )}
 
@@ -251,22 +263,30 @@ export default function Offers({
 function Booking({ offer }) {
   return (
     <div className="flex flex-row-reverse md:contents">
-      <div className="mr-10 md:mr-0 bg-blue-500 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md w-full">
-        <div className="h-[204px] w-[204px] mb-4 mx-auto">
+      <div className="mr-10 md:mr-0 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md w-full">
+        {/* <div className="h-[204px] w-[204px] mb-4 mx-auto"> */}
+        <div className="mb-4 mx-auto relative">
           <a href={offer.link} target="_blank" rel="noreferrer">
-            <img
+            {/* <img
               src={offer.image}
               alt="img"
               className="m-auto h-[204px] w-[204px] object-cover scale-110 transition-all duration-400 hover:scale-100"
+            /> */}
+            <img
+              src={offer.image}
+              alt="img"
+              className="object-cover h-full w-full max-w-[315px] mx-auto"
             />
           </a>
-        </div>
-        <div className="flex flex-col">
-          <h3 className="font-semibold text-center mb-1">{offer.title}</h3>
-          <p className="leading-tight text-center">Price: {offer.price} €</p>
-          <p className="leading-tight text-center">Rating: {offer.score}</p>
+          <div className="flex flex-col absolute bg-black bottom-0 w-full opacity-80">
+            <h3 className="font-semibold text-center mb-1">{offer.title}</h3>
+            <p className="leading-tight text-center mb-1">Price: {offer.price} €</p>
+            <p className="leading-tight text-center mb-1">Rating: {offer.score}</p>
+            <p className="leading-tight text-center mb-1 md:hidden">Provider: {offer.provider}</p>
+          </div>
         </div>
       </div>
+      
       <div className="col-start-5 col-end-6 md:mx-auto relative mr-10">
         <div className="hidden md:flex h-full w-6 items-center justify-center">
           <div className="h-full w-1 bg-blue-500 pointer-events-none"></div>
@@ -287,21 +307,23 @@ function Airbnb({ offer }) {
         <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-rose-500 shadow"></div>
       </div>
 
-      <div className="bg-rose-500 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-        <div className="h-[204px] w-[204px] mb-4 mx-auto">
+      <div className="col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
+        <div className="mb-4 mx-auto relative">
           <a href={offer.link} target="_blank" rel="noreferrer">
             <img
               src={offer.image}
               alt="img"
-              className="m-auto h-[204px] w-[204px] object-cover scale-110 transition-all duration-400 hover:scale-100"
+              className="object-cover w-full aspect-square max-w-[315px]  mx-auto"
             />
           </a>
-        </div>
-        <div>
+          <div className="flex flex-col absolute bg-black bottom-0 w-full opacity-80">
           <h3 className="font-semibold text-center mb-1">{offer.title}</h3>
-          <p className="leading-tight text-center">Price: {offer.price} €</p>
-          <p className="leading-tight text-center">Rating: {offer.score}</p>
+          <p className="leading-tight text-center mb-1">Price: {offer.price} €</p>
+          <p className="leading-tight text-center mb-1">Rating: {offer.score}</p>
+          <p className="leading-tight text-center mb-1 md:hidden ">Provider: {offer.provider}</p>
         </div>
+        </div>
+        
       </div>
     </div>
   );

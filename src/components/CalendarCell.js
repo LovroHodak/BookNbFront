@@ -24,7 +24,7 @@ export default function CalendarCell({
 
   const isBefore = cell.getTime() < today.getTime();
   const isBeforeClasses = isBefore
-    ? "text-white cursor-not-allowed"
+    ? "text-black opacity-40 cursor-not-allowed"
     : "cursor-pointer";
 
   return (

@@ -14,7 +14,7 @@ export default function Aside({
 }) {
   return (
     <div
-      className={`md:w-[340px] grow-0 bg-rose-500 md:mx-auto md:border-x-2 border-blue-500 ${
+      className={`md:w-[340px] grow-0 bg-[#F473B9] md:mx-auto md:border-x-2 border-blue-500 ${
         hideSearch ? "hidden md:block" : ""
       }`}
     >
