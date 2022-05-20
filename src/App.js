@@ -88,7 +88,7 @@ function App() {
         tabs={tabs}
       />
 
-      <div className="md:mx-auto grow md:w-[340px] bg-white">
+      <div className="md:mx-auto grow md:w-[340px] bg-secondary-500">
         {tabs.length === 0 && <Welcome />}
         <Offers
           setSelectedKey={setSelectedKey}

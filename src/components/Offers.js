@@ -67,8 +67,8 @@ export default function Offers({
           const isActive = tab.key === selectedKey;
 
           const activeClasses = isActive
-            ? "bg-rose-500 border-2 border-rose-700 hover:bg-rose-600 rounded"
-            : " border-2 border-gray-200 hover:bg-gray-100 rounded";
+            ? "bg-secondary-200 border-2 border-secondary-300 rounded text-primary-900"
+            : " border-2 bg-secondary-50 border-secondary-100 hover:bg-secondary-100 rounded text-primary-900";
 
           function removeTab() {
             /* const currentTabIndex = tabs.findIndex(t => t === tab) */
@@ -88,7 +88,7 @@ export default function Offers({
 
           return (
             <div
-              className={`${activeClasses} py-2 px-4 mr-1 flex items-center cursor-default`}
+              className={`drop-shadow ${activeClasses} py-2 px-4 mr-1 flex items-center cursor-default`}
             >
               <span
                 onClick={() => {
@@ -103,8 +103,8 @@ export default function Offers({
               <i
                 onClick={() => removeTab()}
                 className={`${
-                  isActive ? "hover:bg-rose-700" : "hover:bg-gray-200"
-                } bi bi-x ml-1 text-2xl cursor-pointer rounded-full`}
+                  isActive ? "hover:bg-secondary-400" : "hover:bg-secondary-400"
+                } bi bi-x ml-1 text-2xl cursor-pointer rounded-full w-8 h-8 text-center`}
               ></i>
             </div>
           );
@@ -115,7 +115,7 @@ export default function Offers({
       {query.isLoading && (
         <button
           type="button"
-          className="mt-8 ml-4 mb-2 flex items-center rounded-lg bg-amber-300 px-4 py-2 text-white"
+          className="mt-8 ml-4 mb-2 flex items-center rounded-lg bg-accent-400 hover:bg-accent-500 px-4 py-2 text-white"
           disabled
         >
           <svg
@@ -145,7 +145,7 @@ export default function Offers({
       {!query.data && !query.isLoading && !query.isError && (
         <button
           onClick={() => query.refetch()}
-          className="bg-blue-500 hover:bg-blue-700 mb-2 text-white font-bold py-2 px-4 rounded mt-8 ml-4"
+          className="bg-accent-400 hover:bg-accent-500 mb-2 text-white font-bold py-2 px-4 rounded mt-8 ml-4"
         >
           Reload
         </button>
@@ -153,13 +153,14 @@ export default function Offers({
 
       {query.isError && !query.data && (
         <div className="mt-8 ml-4 mb-2">
-          <span>Error occured, no results</span>
+          
           <button
             onClick={() => query.refetch()}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8 ml-4"
+            className="bg-accent-400 hover:bg-accent-500 text-white font-bold py-2 px-4 rounded mt-8 mr-4"
           >
             Reload
           </button>
+          <span>Error occured, no results</span>
         </div>
       )}
 
@@ -194,7 +195,7 @@ export default function Offers({
             <i className="p-1 bi bi-arrow-up"></i>
           </button> */}
           <button
-            className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
+            className="w-[90px] text-white text-xs bg-accent-400 hover:bg-accent-500 font-bold py-1 border border-amber-500 rounded-full pl-5"
             onClick={() => {
               sortType !== "priceDown"
                 ? setSortType("priceDown")
@@ -209,11 +210,11 @@ export default function Offers({
               <i className="p-1 bi bi-arrow-down textwhite"></i>
             )}
             {sortType !== "priceDown" && sortType !== "priceUp" && (
-              <i className="p-1 bi bi-arrow-down text-blue-500"></i>
+              <i className="p-1 bi bi-arrow-down text-accent-400"></i>
             )}
           </button>
           <button
-            className="w-[120px] text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 pl-4 border border-blue-700 rounded-full"
+            className="w-[90px] text-white text-xs bg-accent-400 hover:bg-accent-500 font-bold py-1 border border-amber-500 rounded-full pl-5"
             onClick={() => {
               sortType !== "ratingDown"
                 ? setSortType("ratingDown")
@@ -222,24 +223,24 @@ export default function Offers({
           >
             Rating
             {sortType === "ratingUp" && (
-              <i className="p-1 bi bi-arrow-up textwhite"></i>
+              <i className="px-1 bi bi-arrow-up textwhite"></i>
             )}
             {sortType === "ratingDown" && (
-              <i className="p-1 bi bi-arrow-down textwhite"></i>
+              <i className="px-1 bi bi-arrow-down textwhite"></i>
             )}
             {sortType !== "ratingDown" && sortType !== "ratingUp" && (
-              <i className="p-1 bi bi-arrow-down text-blue-500"></i>
+              <i className="px-1 bi bi-arrow-down text-accent-400"></i>
             )}
           </button>
         </div>
       )}
 
       {sortedQuery.length > 0 ? (
-        <div className="hidden md:flex justify-around border-b-2 border-t-2 border-blue-500">
-          <h1 className="border-2 border-black p-2 text-2xl rounded my-2">
+        <div className="hidden md:flex justify-around border-b-2 border-t-2 border-secondary-900">
+          <h1 className="text-primary-900 font-bold p-2 text-2xl rounded my-2">
             Booking
           </h1>
-          <h1 className="border-2 border-black p-2 text-2xl rounded my-2">
+          <h1 className="text-primary-900 font-bold p-2 text-2xl rounded my-2">
             AirBNB
           </h1>
         </div>
@@ -265,7 +266,7 @@ function Booking({ offer }) {
     <div className="flex flex-row-reverse md:contents">
       <div className="mr-10 md:mr-0 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md w-full">
         {/* <div className="h-[204px] w-[204px] mb-4 mx-auto"> */}
-        <div className="mb-4 mx-auto relative">
+        <div className="mx-auto relative">
           <a href={offer.link} target="_blank" rel="noreferrer">
             {/* <img
               src={offer.image}
@@ -275,23 +276,29 @@ function Booking({ offer }) {
             <img
               src={offer.image}
               alt="img"
-              className="object-cover h-full w-full max-w-[315px] mx-auto"
+              className="rounded-xl object-cover h-full w-full max-w-[315px] mx-auto hover:scale-110 transform transition duration-500"
             />
           </a>
-          <div className="flex flex-col absolute bg-black bottom-0 w-full opacity-80">
+          <div className="rounded-xl flex flex-col absolute bg-primary-900 bottom-0 w-full opacity-80 max-w-[315px] left-[50%] translate-x-[-50%]">
             <h3 className="font-semibold text-center mb-1">{offer.title}</h3>
-            <p className="leading-tight text-center mb-1">Price: {offer.price} €</p>
-            <p className="leading-tight text-center mb-1">Rating: {offer.score}</p>
-            <p className="leading-tight text-center mb-1 md:hidden">Provider: {offer.provider}</p>
+            <p className="leading-tight text-center mb-1">
+              Price: {offer.price} €
+            </p>
+            <p className="leading-tight text-center mb-1">
+              Rating: {offer.score}
+            </p>
+            <p className="leading-tight text-center mb-1 md:hidden">
+              Provider: {offer.provider}
+            </p>
           </div>
         </div>
       </div>
-      
+
       <div className="col-start-5 col-end-6 md:mx-auto relative mr-10">
         <div className="hidden md:flex h-full w-6 items-center justify-center">
-          <div className="h-full w-1 bg-blue-500 pointer-events-none"></div>
+          <div className="h-full w-1 bg-secondary-900 pointer-events-none"></div>
         </div>
-        <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-blue-500 shadow"></div>
+        <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-secondary-900 shadow"></div>
       </div>
     </div>
   );
@@ -302,28 +309,33 @@ function Airbnb({ offer }) {
     <div className="mr-10 ml-10 flex md:contents">
       <div className="col-start-5 col-end-6 md:mx-auto relative">
         <div className="hidden md:flex h-full w-6  items-center justify-center">
-          <div className="h-full w-1 bg-rose-500 pointer-events-none"></div>
+          <div className="h-full w-1 bg-secondary-900 pointer-events-none"></div>
         </div>
-        <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-rose-500 shadow"></div>
+        <div className="hidden lg:block w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-secondary-900 shadow"></div>
       </div>
 
       <div className="col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-        <div className="mb-4 mx-auto relative">
+        <div className="mx-auto relative">
           <a href={offer.link} target="_blank" rel="noreferrer">
             <img
               src={offer.image}
               alt="img"
-              className="object-cover w-full aspect-square max-w-[315px]  mx-auto"
+              className="object-cover w-full aspect-square max-w-[315px]  mx-auto hover:scale-110 transform transition duration-500 rounded-xl"
             />
           </a>
-          <div className="flex flex-col absolute bg-black bottom-0 w-full opacity-80">
-          <h3 className="font-semibold text-center mb-1">{offer.title}</h3>
-          <p className="leading-tight text-center mb-1">Price: {offer.price} €</p>
-          <p className="leading-tight text-center mb-1">Rating: {offer.score}</p>
-          <p className="leading-tight text-center mb-1 md:hidden ">Provider: {offer.provider}</p>
+          <div className="rounded-xl flex flex-col absolute bg-primary-900 bottom-0 w-full opacity-80">
+            <h3 className="font-semibold text-center mb-1">{offer.title}</h3>
+            <p className="leading-tight text-center mb-1">
+              Price: {offer.price} €
+            </p>
+            <p className="leading-tight text-center mb-1">
+              Rating: {offer.score}
+            </p>
+            <p className="leading-tight text-center mb-1 md:hidden ">
+              Provider: {offer.provider}
+            </p>
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
   );

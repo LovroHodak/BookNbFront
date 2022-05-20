@@ -14,13 +14,13 @@ export default function Aside({
 }) {
   return (
     <div
-      className={`md:w-[340px] grow-0 bg-[#F473B9] md:mx-auto md:border-x-2 border-blue-500 ${
+      className={`md:w-[340px] grow-0 bg-secondary-500 md:mx-auto md:border-x-2 border-secondary-900 ${
         hideSearch ? "hidden md:block" : ""
       }`}
     >
       <div className="flex items-center p-2.5 mt-1 mx-1">
-        <i className="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-500"></i>
-        <h1 className="font-bold text-black-200 text-[15px] ml-3">BookNB</h1>
+        <i className="bi bi-app-indicator px-2 py-1 rounded-md bg-primary-500 text-white"></i>
+        <h1 className="font-bold text-primary-900 text-[15px] ml-3">BookNB</h1>
         <div className="grow"></div>
         {/* only show hidesearch in smallview and if there are any tabs */}
         {tabs.length > 0 && (
@@ -28,12 +28,12 @@ export default function Aside({
             onClick={() => setHideSearch(true)}
             className="border-2 border-black rounded md:hidden"
           >
-            <i className="bi bi-x text-black "></i>
+            <i className="bi bi-x text-primary-900 "></i>
           </button>
         )}
       </div>
 
-      <div className="my-2 bg-gray-600 h-[1px]"></div>
+      <div className="my-2 bg-secondary-900 h-[1px]"></div>
 
       <div>
         <div className="relative mx-2">
@@ -45,7 +45,7 @@ export default function Aside({
             className="px-8 py-2 text-[15px] w-full bg-transparent placeholder-white opacity-70 rounded-xl"
           />
 
-          <i className="bi bi-search text-sm absolute left-2.5 top-2.5"></i>
+          <i className="bi bi-search text-sm absolute left-2.5 top-2.5 text-primary-900"></i>
           {/* SEARCH BUTTON!!! */}
           <button
             onClick={() => {
@@ -62,7 +62,7 @@ export default function Aside({
         </div>
       </div>
 
-      <div className="my-2 bg-gray-600 h-[1px]"></div>
+      <div className="my-2 bg-secondary-900 h-[1px]"></div>
 
       <Calendar setDateObj={setDateObj} />
     </div>

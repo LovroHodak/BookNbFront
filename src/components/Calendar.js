@@ -154,15 +154,15 @@ export default function Calendar({ setDateObj }) {
   return (
     <div className="mx-1 mb-8">
       <div className="flex items-center p-2.5">
-        <span className="grow">
+        <span className="grow text-primary-900">
           {getMonthName(month)} {year}
         </span>
         <div className="">
           <button onClick={monthDown}>
-            <i className="bi bi-chevron-left" />
+            <i className="bi bi-chevron-left text-primary-900" />
           </button>
           <button onClick={monthUp} className="ml-1.5">
-            <i className="bi bi-chevron-right" />
+            <i className="bi bi-chevron-right text-primary-900" />
           </button>
         </div>
       </div>
@@ -175,7 +175,7 @@ export default function Calendar({ setDateObj }) {
                 return (
                   <th key={i}>
                     <div>
-                      <p>{day}</p>
+                      <p className="text-primary-900">{day}</p>
                     </div>
                   </th>
                 );
