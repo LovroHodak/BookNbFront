@@ -165,7 +165,7 @@ export default function Offers({
       )}
 
       {sortedQuery.length > 0 && (
-        <div className="flex flex-wrap justify-end gap-4 mt-2 mb-2">
+        <div className="flex flex-wrap justify-end gap-4 mr-7 mt-2 mb-2">
           {/* <button
             onClick={() => setSortType("ratingUp")}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-[110px]"
