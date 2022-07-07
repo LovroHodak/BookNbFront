@@ -8,10 +8,10 @@ import Welcome from "./components/Welcome";
 
 function App() {
 
-  useEffect(() => {
+  /* useEffect(() => {
     alert('Unfortunately there are some problems with deploying backend so please run it locally.')
   }, [])
-
+ */
   useEffect(() => {
     if(tabs.length === 0){
 
